@@ -1,5 +1,5 @@
-import 'package:carousel_slider_test/arrow_button.dart';
 import 'package:flutter/material.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import 'carousel_slider/carousel_options.dart';
 import 'carousel_slider/carousel_slider.dart';
@@ -31,8 +31,13 @@ class _MainScreenState extends State<MainScreen> {
         body: Column(children: [
           Container(
             child: CarouselSlider(
-              options:
-                  CarouselOptions(enlargeCenterPage: true, navigatorsOn: true),
+              options: CarouselOptions(
+                  enlargeCenterPage: true,
+                  navigatorsOn: true,
+                  indicatorOn: true,
+                  indicatorEffect: SwapEffect(
+                      dotColor: Colors.grey,
+                      activeDotColor: Colors.greenAccent)),
               items: imgList
                   .map((item) => Container(
                         child: Center(

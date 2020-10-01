@@ -2,6 +2,7 @@ library carousel_slider;
 
 import 'dart:async';
 import 'package:carousel_slider_test/arrow_button.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import 'carousel_state.dart';
 import 'package:flutter/foundation.dart';
@@ -72,6 +73,8 @@ class CarouselSliderState extends State<CarouselSlider>
   CarouselPageChangedReason mode = CarouselPageChangedReason.controller;
 
   CarouselSliderState(this.carouselController);
+
+  int pageIndex;
 
   void changeMode(CarouselPageChangedReason _mode) {
     mode = _mode;
@@ -272,6 +275,10 @@ class CarouselSliderState extends State<CarouselSlider>
         onPageChanged: (int index) {
           int currentPage = getRealIndex(index + carouselState.initialPage,
               carouselState.realPage, widget.itemCount);
+          setState(() {
+            pageIndex = currentPage;
+          });
+
           if (widget.options.onPageChanged != null) {
             widget.options.onPageChanged(currentPage, mode);
           }
@@ -279,7 +286,6 @@ class CarouselSliderState extends State<CarouselSlider>
         itemBuilder: (BuildContext context, int idx) {
           final int index = getRealIndex(idx + carouselState.initialPage,
               carouselState.realPage, widget.itemCount);
-
           return AnimatedBuilder(
             animation: carouselState.pageController,
             child: (widget.items != null)
@@ -332,7 +338,23 @@ class CarouselSliderState extends State<CarouselSlider>
       ),
       PageNavigators(
         controller: carouselController,
-      )
+      ),
+      widget.options.indicatorOn
+          ? Padding(
+              padding: EdgeInsets.only(bottom: 15),
+              child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: AnimatedSmoothIndicator(
+                    activeIndex: pageIndex ??= carouselState.initialPage,
+                    count: carouselState.itemCount,
+                    effect: options.indicatorEffect,
+                    onDotClicked: (index) {
+                      carouselController.jumpToPage(index);
+                      pageIndex = index;
+                    },
+                  )),
+            )
+          : Container()
     ]));
   }
 }

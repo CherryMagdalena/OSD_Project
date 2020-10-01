@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:smooth_page_indicator/src/effects/indicator_effect.dart';
 
 enum CarouselPageChangedReason { timed, manual, controller }
 
@@ -118,6 +120,11 @@ class CarouselOptions {
   /// Whether navigator buttons are on
   final bool navigatorsOn;
 
+  ///Whether indicator circles are on
+  final bool indicatorOn;
+
+  final IndicatorEffect indicatorEffect;
+
   CarouselOptions(
       {this.height,
       this.aspectRatio: 16 / 9,
@@ -141,5 +148,7 @@ class CarouselOptions {
       this.pageViewKey,
       this.enlargeStrategy: CenterPageEnlargeStrategy.scale,
       this.disableCenter: false,
-      this.navigatorsOn: false});
+      this.navigatorsOn: false,
+      this.indicatorOn: false,
+      this.indicatorEffect: const WormEffect()});
 }
