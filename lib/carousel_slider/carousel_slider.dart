@@ -336,25 +336,12 @@ class CarouselSliderState extends State<CarouselSlider>
           );
         },
       ),
-      PageNavigators(
-        controller: carouselController,
-      ),
-      widget.options.indicatorOn
-          ? Padding(
-              padding: EdgeInsets.only(bottom: 15),
-              child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: AnimatedSmoothIndicator(
-                    activeIndex: pageIndex ??= carouselState.initialPage,
-                    count: carouselState.itemCount,
-                    effect: options.indicatorEffect,
-                    onDotClicked: (index) {
-                      carouselController.jumpToPage(index);
-                      pageIndex = index;
-                    },
-                  )),
+      widget.options.navigatorsOn
+          ? PageNavigators(
+              controller: carouselController,
+              option: widget.options.navigatorOption,
             )
-          : Container()
+          : Container(),
     ]));
   }
 }

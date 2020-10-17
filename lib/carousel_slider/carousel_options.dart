@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:smooth_page_indicator/src/effects/indicator_effect.dart';
+import 'package:carousel_slider_test/arrow_button.dart';
 
 enum CarouselPageChangedReason { timed, manual, controller }
 
@@ -45,7 +46,7 @@ class CarouselOptions {
   ///
   /// [autoPlay] is set to true.
   /// Defaults to 4 seconds.
-  final Duration autoPlayInterval;
+  Duration autoPlayInterval;
 
   /// The animation duration between two transitioning pages while in auto playback.
   ///
@@ -120,10 +121,9 @@ class CarouselOptions {
   /// Whether navigator buttons are on
   final bool navigatorsOn;
 
-  ///Whether indicator circles are on
-  final bool indicatorOn;
+  /// Additional options for customised navigators
+  final NavigatorOption navigatorOption;
 
-  final IndicatorEffect indicatorEffect;
 
   CarouselOptions(
       {this.height,
@@ -149,6 +149,5 @@ class CarouselOptions {
       this.enlargeStrategy: CenterPageEnlargeStrategy.scale,
       this.disableCenter: false,
       this.navigatorsOn: false,
-      this.indicatorOn: false,
-      this.indicatorEffect: const WormEffect()});
+      this.navigatorOption: const NavigatorOption()});
 }
