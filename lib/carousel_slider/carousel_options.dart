@@ -124,7 +124,6 @@ class CarouselOptions {
   /// Additional options for customised navigators
   final NavigatorOption navigatorOption;
 
-
   CarouselOptions(
       {this.height,
       this.aspectRatio: 16 / 9,
