@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'video_carousel_slider.dart';
 
 import 'carousel_slider/carousel_options.dart';
 import 'carousel_slider/carousel_slider.dart';
@@ -33,7 +34,9 @@ class _MainScreenState extends State<MainScreen> {
             options: CarouselOptions(
                 enlargeCenterPage: true,
                 navigatorsOn: true,
-              ),
+                indicatorOn: true,
+                indicatorEffect: SwapEffect(
+                    dotColor: Colors.grey, activeDotColor: Colors.greenAccent)),
             items: imgList
                 .map((item) => Container(
                       child: Center(
@@ -42,6 +45,23 @@ class _MainScreenState extends State<MainScreen> {
                       ])),
                     ))
                 .toList(),
+          ),
+          VideoCarouselSlider(
+            options: CarouselOptions(
+                enableInfiniteScroll: false,
+                autoPlay: false,
+                enlargeCenterPage: true),
+            videos: [
+              Video(
+                  sourceType: VideoSource.network,
+                  source:
+                      'https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4'),
+              Video(
+                sourceType: VideoSource.network,
+                source:
+                    'https://ia803001.us.archive.org/16/items/SampleVideo1280x7202mb_201905/SampleVideo_1280x720_2mb.mp4',
+              ),
+            ],
           ),
         ]),
       ),

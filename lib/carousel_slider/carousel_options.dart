@@ -124,6 +124,12 @@ class CarouselOptions {
   /// Additional options for customised navigators
   final NavigatorOption navigatorOption;
 
+  /// Whether indicator circles are on
+  final bool indicatorOn;
+
+  /// Additional options for customised indicators
+  final IndicatorEffect indicatorEffect;
+
   CarouselOptions(
       {this.height,
       this.aspectRatio: 16 / 9,
@@ -148,5 +154,7 @@ class CarouselOptions {
       this.enlargeStrategy: CenterPageEnlargeStrategy.scale,
       this.disableCenter: false,
       this.navigatorsOn: false,
+      this.indicatorOn: false,
+      this.indicatorEffect: const WormEffect(),
       this.navigatorOption: const NavigatorOption()});
 }
